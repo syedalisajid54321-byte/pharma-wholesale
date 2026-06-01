@@ -1,0 +1,25 @@
+// firestore.rules
+// Deploy with: firebase deploy --only firestore:rules
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Only authenticated users can read/write
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    match /doctors/{doctorId} {
+      allow read, write: if isAuthenticated();
+    }
+    
+    match /invoices/{invoiceId} {
+      allow read, write: if isAuthenticated();
+    }
+    
+    match /payments/{paymentId} {
+      allow read, write: if isAuthenticated();
+    }
+  }
+}
