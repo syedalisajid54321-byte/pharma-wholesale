@@ -1,4 +1,0 @@
-scripts:
-  - name: Build Android APK
-    script: |
-      flutter build apk --release -t lib/main.dart
